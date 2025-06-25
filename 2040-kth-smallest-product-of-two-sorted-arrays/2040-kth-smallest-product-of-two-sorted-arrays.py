@@ -2,12 +2,6 @@ import bisect,math
 
 class Solution(object):
     def kthSmallestProduct(self, nums1, nums2, k):
-        """
-        We will take a value mid using binary search and 
-        try to see how many nums[i]*nums[j] values are lesser or equal to mid
-        if we get count>=k , we will look to the left part of binary search
-        else if count<=0 , we will look to the right part
-        """
         def Check(mid):
             n = len(nums1)
             m = len(nums2)
