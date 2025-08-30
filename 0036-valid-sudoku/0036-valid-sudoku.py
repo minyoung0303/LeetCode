@@ -5,9 +5,7 @@ class Solution(object):
         :rtype: bool
         """
         
-        rows = [set() for _ in range(9)]
-        cols = [set() for _ in range(9)]
-        boxes = [set() for _ in range(9)]
+        seen = set()
 
         for r in range(9):
             for c in range(9):
@@ -15,17 +13,11 @@ class Solution(object):
                 if val == ".":
                     continue
 
-                if val in rows[r]:
+                if (r, val) in seen or (val, c) in seen or (r//3, c//e, val) in seen:
                     return False
-                rows[r].add(val)
 
-                if val in cols[c]:
-                    return False
-                cols[c].add(val)
-
-                box_index = (r // 3) * 3 + (c // 3)
-                if val in boxes[box_index]:
-                    return False
-                boxes[box_index].add(val)
+                seen.add((r, val))
+                seen.add((val, c))
+                seen.add((r//3, c//3, val))
 
         return True
